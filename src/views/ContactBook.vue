@@ -7,6 +7,7 @@ import ContactList from '@/components/ContactList.vue';
 import Pagination from '@/components/Pagination.vue';
 import contactsService from '@/services/contacts.service';
 const $router = useRouter();
+
 const totalPages = ref(1);
 const currentPage = ref(1);
 const contacts = ref([]);
@@ -112,6 +113,15 @@ watchEffect(() => retrieveContacts(currentPage.value));
     <i class="fas fa-address-card"></i>
     </h4>
     <ContactCard :contact="selectedContact" />
+    <router-link
+    :to="{
+        name: 'contact.edit',
+        params: { id: selectedContact.id },
+    }"
+    >
+    <span class="mt-2 badge badge-warning">
+    <i class="fas fa-edit"></i> Hiệu chỉnh</span>
+    </router-link>
     </div>
     </div>
     </div>
